@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">filmgallery</string>
+    <string name="filmDescr_text">film Descr</string>
+    <string name="filmName_text">film Name</string>
+    <string name="filmImg_descr">film Descr</string>
+    <string name="button_appointment">Пригласить друзей</string>
+
+
+
+</resources>
