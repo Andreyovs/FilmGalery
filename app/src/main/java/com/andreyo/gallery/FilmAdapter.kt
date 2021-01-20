@@ -3,6 +3,7 @@ package com.andreyo.gallery
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +58,7 @@ class FilmAdapter(val filmList: List<Film>, val callback: Callback,ctx: Context 
                 filmDescr.setTextColor(Color.parseColor("#FF0000"))
                 val intent = Intent(ctx_priv, FilmDetails::class.java)
                 intent.putExtra(ID, item.id)
+                Log.i("write id",item.id.toString())
                 ctx_priv.startActivity(intent)
             }
         }
