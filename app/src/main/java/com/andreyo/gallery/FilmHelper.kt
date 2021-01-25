@@ -13,23 +13,28 @@ class FilmHelper {
 
     companion object {
         const val ID = "id"
-        private lateinit var dataIS: InputStream
-        public fun getFilms(ctx:Context): List<Film>{
-            dataIS = this.javaClass.getResource("/res/raw/films.json").openStream()
-            val strJson = dataIS.bufferedReader().use { it.readText() }
-            dataIS.close()
-            val films: List<Film> = Gson().fromJson(strJson, Film_Results::class.java).results
+        private lateinit var films: List<Film>
+
+        public fun getFilms(): List<Film> {
+            if (!this::films.isInitialized) {
+                val dataIS: InputStream =
+                    this.javaClass.getResource("/res/raw/films.json").openStream()
+                val strJson = dataIS.bufferedReader().use { it.readText() }
+                dataIS.close()
+                films = Gson().fromJson(strJson, Film_Results::class.java).results
+            }
             return films
         }
-        public fun getFilm(id: Int,films:List<Film>): Film {
-                        Log.i("read id", id.toString())
+
+        public fun getFilm(id: Int): Film {
+            Log.i("read id", id.toString())
             return films.filter { it.id.equals(id) }.first()
 
         }
 
     }
 
-    public fun sendEmail(ctx: Context,recipient: String, subject: String, message: String) {
+    public fun sendEmail(ctx: Context, recipient: String, subject: String, message: String) {
         /*ACTION_SEND action to launch an email client installed on your Android device.*/
 
 

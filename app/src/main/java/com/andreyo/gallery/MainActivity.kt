@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         var recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.recilerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = FilmAdapter(FilmHelper.getFilms(this), object : FilmAdapter.Callback {
+        recyclerView.adapter = FilmAdapter(FilmHelper.getFilms(), object : FilmAdapter.Callback {
             override fun onItemClicked(item: Film) {
             }
         }, this)

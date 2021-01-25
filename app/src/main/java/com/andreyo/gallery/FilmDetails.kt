@@ -12,7 +12,7 @@ class FilmDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.film_details)
         val helper : FilmHelper = FilmHelper()
-        val film: Film = FilmHelper.getFilm(intent.getIntExtra(FilmHelper.ID, 0),FilmHelper.getFilms(this))
+        val film: Film = FilmHelper.getFilm(intent.getIntExtra(FilmHelper.ID, 0))
         val filmName = this.findViewById<TextView>(R.id.filmName)
         val filmDescr = this.findViewById<TextView>(R.id.filmDescr)
         val filmId = this.findViewById<TextView>(R.id.filmId)
