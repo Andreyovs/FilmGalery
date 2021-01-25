@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-
 class MainActivity : AppCompatActivity() {
     lateinit var films: List<Film>
     override fun onCreate(savedInstanceState: Bundle?) {

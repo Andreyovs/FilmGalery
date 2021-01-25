@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-class FilmDetails : AppCompatActivity() {
 
+class FilmDetails : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.film_details)
-        val helper : FilmHelper = FilmHelper()
+        val helper: FilmHelper = FilmHelper()
         val film: Film = FilmHelper.getFilm(intent.getIntExtra(FilmHelper.ID, 0))
         val filmName = this.findViewById<TextView>(R.id.filmName)
         val filmDescr = this.findViewById<TextView>(R.id.filmDescr)
@@ -26,12 +26,9 @@ class FilmDetails : AppCompatActivity() {
             val message = "Приглашение в галлерею" + filmId.text
 
             //method call for email intent with these inputs as parameters
-            helper.sendEmail(this,recipient, subject, message)
+            helper.sendEmail(this, recipient, subject, message)
         }
     }
-
-
-
 
 
 }
