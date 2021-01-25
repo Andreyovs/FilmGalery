@@ -7,18 +7,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-
 class FilmAdapter(val filmList: List<Film>, val callback: Callback,ctx: Context ) :
     RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
     val ctx_priv = ctx
-    companion object {
-        const val ID = "id"
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -42,14 +39,20 @@ class FilmAdapter(val filmList: List<Film>, val callback: Callback,ctx: Context 
         private val filmName = itemView.findViewById<TextView>(R.id.filmName)
         private val filmDescr = itemView.findViewById<TextView>(R.id.filmDescr)
         private val filmImg = itemView.findViewById<ImageView>(R.id.film_ImageView)
+        private val buttonSendEmail = itemView.findViewById<Button>(R.id.buttonSendEmail)
+        private val buttonDetails = itemView.findViewById<Button>(R.id.buttonDetails)
+
 
         fun bind(item: Film) {
             filmName.text = item.title
             filmDescr.text = item.overview.trim()
 
+
             Picasso.get().load("https://www.themoviedb.org/t/p/w220_and_h330_face" + item.poster_path).into(
                 filmImg
             );
+
+
 
             itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[adapterPosition])
@@ -57,10 +60,25 @@ class FilmAdapter(val filmList: List<Film>, val callback: Callback,ctx: Context 
                 filmName.setTextColor(Color.parseColor("#FF0000"))
                 filmDescr.setTextColor(Color.parseColor("#FF0000"))
                 val intent = Intent(ctx_priv, FilmDetails::class.java)
-                intent.putExtra(ID, item.id)
-                Log.i("write id",item.id.toString())
+                intent.putExtra(FilmHelper.ID, item.id)
+                Log.i("itemView write id",item.id.toString())
                 ctx_priv.startActivity(intent)
             }
+
+            buttonSendEmail.setOnClickListener {
+                val recipient = "myfriend@yandex.ru"
+                val subject = "Приглашение в галлерею"
+                val message = "Приглашение в галлерею" + item.id.toString()
+
+                //method call for email intent with these inputs as parameters
+                FilmHelper().sendEmail(itemView.context,recipient, subject, message)
+            }
+
+            buttonDetails.setOnClickListener {
+                Log.i("button write id",item.id.toString())
+                itemView.performClick()
+            }
+
         }
     }
 

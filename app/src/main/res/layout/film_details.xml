@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/button_appointment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filmAdult" />
+        app:layout_constraintTop_toBottomOf="@+id/filmId" />
 
     <TextView
         android:id="@+id/filmName"
@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filmName" />
     <TextView
-        android:id="@+id/filmAdult"
+        android:id="@+id/filmId"
         android:layout_width="416dp"
         android:layout_height="99dp"
         android:text="TextView"
