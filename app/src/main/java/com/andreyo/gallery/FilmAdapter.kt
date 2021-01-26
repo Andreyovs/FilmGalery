@@ -62,7 +62,7 @@ class FilmAdapter(val filmList: List<Film>, val callback: Callback, ctx: Context
                 if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[adapterPosition])
                 colorItems()
                 FilmHelper.checked.add(item.id)
-                FilmHelper.checked.distinct().toList()
+                FilmHelper.checked= FilmHelper.checked.distinct().toMutableList()
                 val intent = Intent(ctx_priv, FilmDetails::class.java)
                 intent.putExtra(FilmHelper.ID, item.id)
                 Log.i("itemView write id", item.id.toString())
