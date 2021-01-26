@@ -14,7 +14,7 @@ class FilmHelper {
     companion object {
         const val ID = "id"
         private lateinit var films: List<Film>
-
+        public  lateinit var checked :MutableList<Int>
         public fun getFilms(): List<Film> {
             if (!this::films.isInitialized) {
                 val dataIS: InputStream =
@@ -22,6 +22,7 @@ class FilmHelper {
                 val strJson = dataIS.bufferedReader().use { it.readText() }
                 dataIS.close()
                 films = Gson().fromJson(strJson, Film_Results::class.java).results
+                checked = mutableListOf()
             }
             return films
         }

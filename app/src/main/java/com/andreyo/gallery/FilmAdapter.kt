@@ -42,24 +42,26 @@ class FilmAdapter(val filmList: List<Film>, val callback: Callback, ctx: Context
         private val buttonSendEmail = itemView.findViewById<Button>(R.id.buttonSendEmail)
         private val buttonDetails = itemView.findViewById<Button>(R.id.buttonDetails)
 
+        fun colorItems() {
+            filmName.setTextColor(Color.parseColor("#FF0000"))
+            filmDescr.setTextColor(Color.parseColor("#FF0000"))
+
+        }
 
         fun bind(item: Film) {
             filmName.text = item.title
             filmDescr.text = item.overview.trim()
-
-
             Picasso.get()
                 .load("https://www.themoviedb.org/t/p/w220_and_h330_face" + item.poster_path).into(
                     filmImg
                 );
-
+            if (FilmHelper.checked.contains(item.id)) {colorItems()}
 
 
             itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[adapterPosition])
-                //открытие нового view
-                filmName.setTextColor(Color.parseColor("#FF0000"))
-                filmDescr.setTextColor(Color.parseColor("#FF0000"))
+                colorItems()
+                FilmHelper.checked.add(item.id)
                 val intent = Intent(ctx_priv, FilmDetails::class.java)
                 intent.putExtra(FilmHelper.ID, item.id)
                 Log.i("itemView write id", item.id.toString())

@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.recilerView)
+        var recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = FilmAdapter(FilmHelper.getFilms(), object : FilmAdapter.Callback {
             override fun onItemClicked(item: Film) {
