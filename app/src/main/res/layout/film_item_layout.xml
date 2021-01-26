@@ -5,52 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/filmName"
-        android:layout_width="412dp"
-        android:layout_height="40dp"
-        android:text="@string/filmName_text"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/film_ImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:contentDescription="@string/filmImg_descr"
+        android:padding="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/filmName"
+        android:padding="4dp"
+        android:clipToPadding="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filmName_text"
+        app:layout_constraintEnd_toEndOf="@+id/film_ImageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/filmDescr"
-        android:layout_width="412dp"
-        android:layout_height="90dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:padding="4dp"
         android:text="@string/filmDescr_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filmName" />
+        app:layout_constraintTop_toBottomOf="@+id/film_ImageView" />
 
-    <ImageView
-        android:id="@+id/film_ImageView"
-        android:layout_width="412dp"
-        android:layout_height="300dp"
-        android:layout_below="@+id/filmDescr"
-        android:contentDescription="@string/filmImg_descr"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filmDescr" />
 
     <Button
         android:id="@+id/buttonSendEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/button_appointment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/buttonDetails"
-        app:layout_constraintTop_toBottomOf="@+id/film_ImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/filmDescr" />
 
     <Button
         android:id="@+id/buttonDetails"
-        android:layout_width="195dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/button_details"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/film_ImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/filmDescr" />
 </androidx.constraintlayout.widget.ConstraintLayout>
