@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:contentDescription="@string/filmImg_descr"
+        tools:contentDescription="@string/filmImg_descr"
         android:padding="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:padding="4dp"
-        android:text="@string/filmName_text"
+        tools:text="@string/filmName_text"
         app:layout_constraintStart_toEndOf="@+id/film_ImageView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +32,7 @@
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:padding="4dp"
-        android:text="@string/filmDescr_text"
+        tools:text="@string/filmDescr_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/film_ImageView" />
