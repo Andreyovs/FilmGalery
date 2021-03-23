@@ -23,7 +23,7 @@ class FilmDetails : AppCompatActivity() {
         buttonSendEmail.setOnClickListener {
             val recipient = "myfriend@yandex.ru"
             val subject = "Приглашение в галлерею"
-            val message = "Приглашение в галлерею" + filmId.text
+            val message = "Приглашение в галлерею/id=" + filmId.text
 
             //method call for email intent with these inputs as parameters
             helper.sendEmail(this, recipient, subject, message)

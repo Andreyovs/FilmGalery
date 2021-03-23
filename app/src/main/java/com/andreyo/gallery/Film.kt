@@ -2,7 +2,7 @@ package com.andreyo.gallery
 
 import com.google.gson.annotations.SerializedName
 
-data class Film_Results(
+data class FilmResults(
 
     @SerializedName("results") val results: List<Film>
 )

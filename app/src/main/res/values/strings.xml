@@ -1,10 +1,14 @@
 <resources>
-    <string name="app_name">filmgallery</string>
-    <string name="filmDescr_text">film Descr</string>
+    <string name="app_name">Film gallery</string>
+    <string name="filmDescr_text">film Description</string>
     <string name="filmName_text">film Name</string>
-    <string name="filmImg_descr">film Descr</string>
-    <string name="button_appointment">Пригласить друзей</string>
-    <string name="button_details">Детали...</string>
+    <string name="filmImg_descr">film Description</string>
+    <string name="button_appointment">Invite friends</string>
+    <string name="button_details">Details</string>
+    <string name="film_url" translatable="false">https://www.themoviedb.org/t/p/w220_and_h330_face</string>
+    <string name="button_remove">Remove</string>
+    <string name="exit_dialog">Exit Alert</string>
+    <string name="exit_text">Do you want to quit this app ?</string>
 
 
 

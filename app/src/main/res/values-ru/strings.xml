@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Галерея фильмов</string>
+    <string name="filmDescr_text">Описание фильма</string>
+    <string name="filmName_text">Наименование фильма</string>
+    <string name="filmImg_descr">Описание фильма</string>
+    <string name="button_appointment">Пригласить друзей</string>
+    <string name="button_details">Детали</string>
+    <string name="button_remove">Удалить</string>
+    <string name="exit_dialog">Диалог</string>
+    <string name="exit_text">Вы хотите выйти из приложения?</string>
+
+
+</resources>
