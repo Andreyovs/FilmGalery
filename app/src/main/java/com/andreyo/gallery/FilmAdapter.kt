@@ -1,6 +1,5 @@
 package com.andreyo.gallery
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
@@ -13,9 +12,8 @@ import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class FilmAdapter(val filmList: List<Film>, val callback: Callback, ctx: Context) :
+class FilmAdapter(val filmList: List<Film>, val callback: Callback) :
     RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
-    val ctx_priv = ctx
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -76,8 +74,8 @@ class FilmAdapter(val filmList: List<Film>, val callback: Callback, ctx: Context
                     "clicked long button : " + buttonLike.id.toString() + " id элемента : ",
                     item.id.toString()
                 )
-                val intent = Intent(ctx_priv, FilmFavorites::class.java)
-                ctx_priv.startActivity(intent)
+                val intent = Intent(buttonLike.context, FilmFavorites::class.java)
+                buttonLike.context.startActivity(intent)
                 false
             }
             buttonSendEmail?.setOnClickListener {
@@ -95,10 +93,10 @@ class FilmAdapter(val filmList: List<Film>, val callback: Callback, ctx: Context
                 colorItems()
                 FilmHelper.checked.add(item.id)
                 FilmHelper.checked = FilmHelper.checked.distinct().toMutableList()
-                val intent = Intent(ctx_priv, FilmDetails::class.java)
+                val intent = Intent(buttonDetails.context, FilmDetails::class.java)
                 intent.putExtra(FilmHelper.ID, item.id)
                 Log.i("itemView write id", item.id.toString())
-                ctx_priv.startActivity(intent)
+                buttonDetails.context.startActivity(intent)
 
             }
 
