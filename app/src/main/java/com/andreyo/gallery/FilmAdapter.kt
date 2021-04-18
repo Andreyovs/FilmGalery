@@ -50,6 +50,11 @@ class FilmAdapter(val filmList: List<Film>, val callback: Callback, ctx: Context
             filmDescr.setTextColor(Color.parseColor("#FF0000"))
 
         }
+        fun defaultColors() {
+            filmName.setTextColor(Color.parseColor("black"))
+            filmDescr.setTextColor(Color.parseColor("black"))
+
+        }
 
         fun SetListeners(item: Film) {
             buttonLike?.setOnClickListener {
@@ -110,6 +115,8 @@ class FilmAdapter(val filmList: List<Film>, val callback: Callback, ctx: Context
             }
             if (FilmHelper.checked.contains(item.id)) {
                 colorItems()
+            } else {
+                defaultColors()
             }
             if (FilmHelper.liked.contains(item.id)) {
                 buttonLike.setChecked(true)
