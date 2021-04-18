@@ -1,24 +1,31 @@
 package com.andreyo.gallery
 
-import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
+import com.andreyo.gallery.helper.FilmHelper
+import com.andreyo.gallery.view.FilmDetailsFragment
 import com.squareup.picasso.Picasso
 
 
-class FavoriteAdapter(val filmList: MutableList<Film>, val callback: Callback, ctx: Context) :
+class FavoriteAdapter(
+    val filmList: MutableList<Film>,
+    val callback: Callback,
+    val layoutInflater: LayoutInflater
+) :
     RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteAdapter.ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.film_favorites,
+                R.layout.fragment_film_item,
                 parent, false
             )
         )
@@ -35,14 +42,18 @@ class FavoriteAdapter(val filmList: MutableList<Film>, val callback: Callback, c
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val filmName = itemView.findViewById<TextView>(R.id.filmName)
-        private val filmDescr = itemView.findViewById<TextView>(R.id.filmDescr)
-        private val filmImg = itemView.findViewById<ImageView>(R.id.film_ImageView)
-        private val url = itemView.resources.getString(R.string.film_url)
-        private val buttonLike = itemView.findViewById<ToggleButton>(R.id.tgbFav)
+        private val filmName = itemView.findViewById<TextView>(R.id.tv_filmName)
+        private val filmDescr = itemView.findViewById<TextView>(R.id.tv_filmDescr)
+        private val filmImg = itemView.findViewById<ImageView>(R.id.iv_film)
+        private val buttonLike = itemView.findViewById<ToggleButton>(R.id.tgb_Fav)
+        private val buttonDetails = itemView.findViewById<Button>(R.id.btn_details)
+
 
 
         private fun setListeners(item: Film) {
+            val fm =
+                (layoutInflater.context as com.andreyo.gallery.MainActivity).supportFragmentManager
+
             buttonLike?.setOnClickListener {
                 Log.i(
                     "clicked button : " + buttonLike.id.toString() + " id элемента : ",
@@ -52,8 +63,22 @@ class FavoriteAdapter(val filmList: MutableList<Film>, val callback: Callback, c
                 FilmHelper.liked.remove(item.id)
                 filmList.remove(item)
                 callback.onDeleteClick(adapterPosition)
-
-
+            }
+            buttonDetails?.setOnClickListener {
+                Log.i("button write id", item.id.toString())
+                if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[adapterPosition])
+                FilmHelper.checked.add(item.id)
+                FilmHelper.checked = FilmHelper.checked.distinct().toMutableList()
+                val args = Bundle()
+                args.putInt(FilmHelper.ID, item.id)
+                Log.i("itemView write id", item.id.toString())
+                val fragment = FilmDetailsFragment()
+                fragment.arguments = args
+                fm
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, fragment, FilmDetailsFragment.TAG)
+                    .addToBackStack(FilmDetailsFragment.TAG)
+                    .commit()
             }
 
         }
@@ -63,7 +88,7 @@ class FavoriteAdapter(val filmList: MutableList<Film>, val callback: Callback, c
             filmDescr.text = item.overview.trim()
             if (filmImg != null) {
                 Picasso.get()
-                    .load(this.url + item.poster_path).into(
+                    .load(FilmHelper.GetUrlByPostrPath(item.poster_path, layoutInflater.context)).into(
                         filmImg
                     );
             }

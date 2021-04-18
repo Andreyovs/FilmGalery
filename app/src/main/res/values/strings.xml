@@ -1,15 +1,22 @@
 <resources>
     <string name="app_name">Film gallery</string>
-    <string name="filmDescr_text">film Description</string>
+    <string name="filmDescr_text">Film Description bla-bla-bla</string>
     <string name="filmName_text">film Name</string>
     <string name="filmImg_descr">film Description</string>
-    <string name="button_appointment">Invite friends</string>
-    <string name="button_details">Details</string>
+    <string name="button_appointment">Invite</string>
+    <string name="button_details">...</string>
     <string name="film_url" translatable="false">https://www.themoviedb.org/t/p/w220_and_h330_face</string>
-    <string name="button_remove">Remove</string>
     <string name="exit_dialog">Exit Alert</string>
     <string name="exit_text">Do you want to quit this app ?</string>
-
+    <string name="favorite">Favorite</string>
+    <string name="undo">undo</string>
+    <string name="addFavorite">add to favorite</string>
+    <string name="delFavorite">delete from favorite</string>
+    <string name="emailTitle">Title</string>
+    <string name="emailAddrHint">email address</string>
+    <string name="emailSubject">Subject</string>
+    <string name="emailBody">Body</string>
+    <string name="btn_emilName">Send</string>
 
 
 </resources>
