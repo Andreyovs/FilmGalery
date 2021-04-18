@@ -55,8 +55,17 @@ class FilmAdapter(
         private fun showSnackbar(text: String, film: Film) {
 
             val snackbar =
-                Snackbar.make(mainActivity.findViewById(R.id.fragmentContainer), text, Snackbar.LENGTH_LONG)
-            snackbar.setAction(R.string.undo) { updateSelected(FilmHelper.isFavorite(film.id),film) }
+                Snackbar.make(
+                    mainActivity.findViewById(R.id.fragmentContainer),
+                    text,
+                    Snackbar.LENGTH_LONG
+                )
+            snackbar.setAction(R.string.undo) {
+                updateSelected(
+                    FilmHelper.isFavorite(film.id),
+                    film
+                )
+            }
             snackbar.show()
         }
 
@@ -71,15 +80,20 @@ class FilmAdapter(
                     mainActivity.getText(R.string.delFavorite).toString(), film
                 )
             }
-            updateSelected(buttonLike.isSelected,film)
+            updateSelected(buttonLike.isSelected, film)
         }
 
         fun colorItems() {
             filmName.setTextColor(Color.parseColor("#FF0000"))
             filmDescr.setTextColor(Color.parseColor("#FF0000"))
-
         }
-        fun updateSelected(selected:Boolean, item:Film) {
+
+        fun colorDefaultItems() {
+            filmName.setTextColor(Color.parseColor("black"))
+            filmDescr.setTextColor(Color.parseColor("black"))
+        }
+
+        fun updateSelected(selected: Boolean, item: Film) {
             if (!selected) {
                 FilmHelper.liked.add(item.id)
                 FilmHelper.liked = FilmHelper.liked.distinct().toMutableList()
@@ -100,7 +114,7 @@ class FilmAdapter(
                     "clicked button : " + buttonLike.id.toString() + " id элемента : ",
                     item.id.toString()
                 )
-                updateSelected(buttonLike.isSelected,item)
+                updateSelected(buttonLike.isSelected, item)
                 onFilmFavorite(item)
 
 
@@ -148,6 +162,8 @@ class FilmAdapter(
             }
             if (FilmHelper.checked.contains(item.id)) {
                 colorItems()
+            } else {
+                colorDefaultItems()
             }
             if (FilmHelper.liked.contains(item.id)) {
                 buttonLike.setChecked(true)
