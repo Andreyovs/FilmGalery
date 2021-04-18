@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClicked(item: Film) {
 
             }
-        }, this)
+        })
         recyclerView.addItemDecoration(
             DividerItemDecoration(recyclerView.context,
                 DividerItemDecoration.VERTICAL
