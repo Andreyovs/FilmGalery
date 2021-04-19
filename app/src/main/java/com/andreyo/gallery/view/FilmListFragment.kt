@@ -26,6 +26,7 @@ class FilmListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         var rv: RecyclerView = view.findViewById(R.id.rv_Films)
+        //FilmHelper.getFilms()
         rv.adapter = FilmAdapter(FilmHelper.getFilms(), object : FilmAdapter.Callback {
             override fun onItemClicked(item: Film) {
 
