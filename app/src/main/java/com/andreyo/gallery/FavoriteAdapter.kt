@@ -47,7 +47,6 @@ class FavoriteAdapter(
         private val filmDescr = itemView.findViewById<TextView>(R.id.tv_filmDescr)
         private val filmImg = itemView.findViewById<ImageView>(R.id.iv_film)
         private val buttonLike = itemView.findViewById<ToggleButton>(R.id.tgb_Fav)
-        //private val buttonDetails = itemView.findViewById<Button>(R.id.btn_details)
 
 
         private fun setListeners(item: Film) {
