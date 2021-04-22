@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
@@ -49,8 +48,7 @@ class FilmAdapter(
         private val filmDescr = itemView.findViewById<TextView>(R.id.tv_filmDescr)
         private val filmImg = itemView.findViewById<ImageView>(R.id.iv_film)
         private val buttonLike = itemView.findViewById<ToggleButton>(R.id.tgb_Fav)
-        private val buttonDetails = itemView.findViewById<Button>(R.id.btn_details)
-        private val mainActivity = (layoutInflater.context as com.andreyo.gallery.MainActivity)
+        private val mainActivity = (layoutInflater.context as MainActivity)
 
 
         private fun showSnackbar(text: String, film: Film) {
@@ -70,7 +68,7 @@ class FilmAdapter(
             snackbar.show()
         }
 
-        fun onFilmFavorite(film: Film) {
+        private fun onFilmFavorite(film: Film) {
 
 
             when (if (buttonLike.isSelected) "delete" else "add") {
@@ -84,17 +82,17 @@ class FilmAdapter(
             updateSelected(buttonLike.isSelected, film)
         }
 
-        fun colorItems() {
+        private fun colorItems() {
             filmName.setTextColor(Color.parseColor("#FF0000"))
             filmDescr.setTextColor(Color.parseColor("#FF0000"))
         }
 
-        fun colorDefaultItems() {
+        private fun colorDefaultItems() {
             filmName.setTextColor(Color.parseColor("black"))
             filmDescr.setTextColor(Color.parseColor("black"))
         }
 
-        fun updateSelected(selected: Boolean, item: Film) {
+        private fun updateSelected(selected: Boolean, item: Film) {
             if (!selected) {
                 FilmHelper.liked.add(item.id)
                 FilmHelper.liked = FilmHelper.liked.distinct().toMutableList()
@@ -107,7 +105,7 @@ class FilmAdapter(
             }
         }
 
-        fun SetListeners(item: Film) {
+        private fun setListeners(item: Film) {
             val fm =
                 mainActivity.supportFragmentManager
             buttonLike?.setOnClickListener {
@@ -130,24 +128,26 @@ class FilmAdapter(
                 false
             }
 
-            buttonDetails?.setOnClickListener {
-                Log.i("button write id", item.id.toString())
+            itemView.setOnClickListener {
+                Log.i("itemView write id", item.id.toString())
                 if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[adapterPosition])
                 colorItems()
                 FilmHelper.checked.add(item.id)
                 FilmHelper.checked = FilmHelper.checked.distinct().toMutableList()
                 val args = Bundle()
                 args.putInt(FilmHelper.ID, item.id)
-                Log.i("itemView write id", item.id.toString())
                 val fragment = FilmDetailsFragment()
                 fragment.arguments = args
-                fm
+                val sm = fm
                     .beginTransaction()
-                    .replace(R.id.fragmentContainer, fragment, FilmDetailsFragment.TAG)
-                    .addToBackStack(FilmDetailsFragment.TAG)
-                    .commit()
+                if (!fragment.isAdded) {
+                    sm.replace(R.id.fragmentContainer, fragment, FilmDetailsFragment.TAG)
+                } else {
+                    sm.show(fragment)
+                }
+                sm.addToBackStack(FilmDetailsFragment.TAG)
+                sm.commit()
             }
-
         }
 
         fun bind(item: Film) {
@@ -156,10 +156,15 @@ class FilmAdapter(
 
             if (filmImg != null) {
                 Picasso.get()
-                    .load(FilmHelper.GetUrlByPostrPath(item.poster_path, layoutInflater.context))
+                    .load(
+                        FilmHelper.GetUrlByPostrPath(
+                            item.poster_path,
+                            layoutInflater.context
+                        )
+                    )
                     .into(
                         filmImg
-                    );
+                    )
             }
             if (FilmHelper.checked.contains(item.id)) {
                 colorItems()
@@ -168,10 +173,11 @@ class FilmAdapter(
             }
             if (FilmHelper.liked.contains(item.id)) {
                 buttonLike.setChecked(true)
-            }else { buttonLike.isChecked = false }
-            SetListeners(item)
+            } else {
+                buttonLike.isChecked = false
+            }
+            setListeners(item)
         }
-
     }
 
 
@@ -180,3 +186,5 @@ class FilmAdapter(
 
     }
 }
+
+

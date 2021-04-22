@@ -5,10 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.helper.FilmHelper
@@ -47,12 +47,12 @@ class FavoriteAdapter(
         private val filmDescr = itemView.findViewById<TextView>(R.id.tv_filmDescr)
         private val filmImg = itemView.findViewById<ImageView>(R.id.iv_film)
         private val buttonLike = itemView.findViewById<ToggleButton>(R.id.tgb_Fav)
-        private val buttonDetails = itemView.findViewById<Button>(R.id.btn_details)
+        //private val buttonDetails = itemView.findViewById<Button>(R.id.btn_details)
 
 
         private fun setListeners(item: Film) {
-            val fm =
-                (layoutInflater.context as com.andreyo.gallery.MainActivity).supportFragmentManager
+            val fm: FragmentManager =
+                (layoutInflater.context as MainActivity).supportFragmentManager
 
             buttonLike?.setOnClickListener {
                 Log.i(
@@ -64,8 +64,7 @@ class FavoriteAdapter(
                 filmList.remove(item)
                 callback.onDeleteClick(adapterPosition)
             }
-            buttonDetails?.setOnClickListener {
-                Log.i("button write id", item.id.toString())
+            itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[adapterPosition])
                 FilmHelper.checked.add(item.id)
                 FilmHelper.checked = FilmHelper.checked.distinct().toMutableList()
@@ -74,11 +73,15 @@ class FavoriteAdapter(
                 Log.i("itemView write id", item.id.toString())
                 val fragment = FilmDetailsFragment()
                 fragment.arguments = args
-                fm
+                val sm = fm
                     .beginTransaction()
-                    .replace(R.id.fragmentContainer, fragment, FilmDetailsFragment.TAG)
-                    .addToBackStack(FilmDetailsFragment.TAG)
-                    .commit()
+                if (!fragment.isAdded) {
+                    sm.replace(R.id.fragmentContainer, fragment, FilmDetailsFragment.TAG)
+                } else {
+                    sm.show(fragment)
+                }
+                sm.addToBackStack(FilmDetailsFragment.TAG)
+                sm.commit()
             }
 
         }
@@ -91,7 +94,7 @@ class FavoriteAdapter(
                     .load(FilmHelper.GetUrlByPostrPath(item.poster_path, layoutInflater.context))
                     .into(
                         filmImg
-                    );
+                    )
             }
 
             buttonLike.setChecked(true)

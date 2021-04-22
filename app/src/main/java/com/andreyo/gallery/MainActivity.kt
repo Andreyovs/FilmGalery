@@ -47,10 +47,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        var sm = supportFragmentManager
+        val sm = supportFragmentManager
             .beginTransaction()
         if (!fragment!!.isAdded) {
-            sm.replace(R.id.fragmentContainer, fragment!!, tag)
+            sm.replace(R.id.fragmentContainer, fragment, tag)
         } else {
             sm.show(fragment)
         }

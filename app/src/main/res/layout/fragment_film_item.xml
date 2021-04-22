@@ -51,12 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_film" />
 
-    <Button
-        android:id="@+id/btn_details"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="@string/button_details"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_film" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
