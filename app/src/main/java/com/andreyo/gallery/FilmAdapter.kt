@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
+import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.helper.FilmHelper
 import com.andreyo.gallery.view.FilmDetailsFragment
 import com.google.android.material.snackbar.Snackbar
@@ -167,7 +168,7 @@ class FilmAdapter(
             }
             if (FilmHelper.liked.contains(item.id)) {
                 buttonLike.setChecked(true)
-            }
+            }else { buttonLike.isChecked = false }
             SetListeners(item)
         }
 

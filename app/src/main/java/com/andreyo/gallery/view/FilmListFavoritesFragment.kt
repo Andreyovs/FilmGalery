@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.andreyo.gallery.FavoriteAdapter
-import com.andreyo.gallery.Film
+import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.R
 import com.andreyo.gallery.helper.FilmHelper
 

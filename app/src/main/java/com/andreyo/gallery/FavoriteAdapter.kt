@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
+import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.helper.FilmHelper
 import com.andreyo.gallery.view.FilmDetailsFragment
 import com.squareup.picasso.Picasso
@@ -47,7 +48,6 @@ class FavoriteAdapter(
         private val filmImg = itemView.findViewById<ImageView>(R.id.iv_film)
         private val buttonLike = itemView.findViewById<ToggleButton>(R.id.tgb_Fav)
         private val buttonDetails = itemView.findViewById<Button>(R.id.btn_details)
-
 
 
         private fun setListeners(item: Film) {
@@ -88,7 +88,8 @@ class FavoriteAdapter(
             filmDescr.text = item.overview.trim()
             if (filmImg != null) {
                 Picasso.get()
-                    .load(FilmHelper.GetUrlByPostrPath(item.poster_path, layoutInflater.context)).into(
+                    .load(FilmHelper.GetUrlByPostrPath(item.poster_path, layoutInflater.context))
+                    .into(
                         filmImg
                     );
             }

@@ -1,4 +1,4 @@
-package com.andreyo.gallery
+package com.andreyo.gallery.data
 
 import com.google.gson.annotations.SerializedName
 
