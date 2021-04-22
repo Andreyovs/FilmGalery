@@ -29,9 +29,9 @@ class FilmAppInviteFragment : Fragment() {
         val emailAddress = view.findViewById<EditText>(R.id.et_email)
         val emailSubject = view.findViewById<EditText>(R.id.et_subject)
         val emailBody = view.findViewById<EditText>(R.id.et_body)
-        val btn_sendEmail = view.findViewById<Button>(R.id.btn_send)
+        val btnSendEmail = view.findViewById<Button>(R.id.btn_send)
 
-        btn_sendEmail.setOnClickListener {
+        btnSendEmail.setOnClickListener {
             sendEmail(
                emailAddress.text.toString(), emailSubject.text.toString(),
                 emailBody.text.toString()

@@ -1,3 +1,5 @@
+@file:Suppress("RedundantOverride")
+
 package com.andreyo.gallery.view
 
 import android.os.Bundle
@@ -28,11 +30,6 @@ class FilmDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_film_details, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -45,7 +42,7 @@ class FilmDetailsFragment : Fragment() {
         view.findViewById<Toolbar>(R.id.pageNameTextView).title = film.title
         if (view.findViewById<ImageView>(R.id.iv_film) != null) {
             Picasso.get()
-                .load(FilmHelper.GetUrlByPostrPath(film.poster_path,layoutInflater.context)).into(
+                .load(FilmHelper.getUrlByPostrPath(film.poster_path,layoutInflater.context)).into(
                     view.findViewById<ImageView>(R.id.iv_film)
                 )
         }

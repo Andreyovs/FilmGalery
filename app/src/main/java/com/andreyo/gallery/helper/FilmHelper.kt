@@ -28,7 +28,7 @@ object FilmHelper {
 
     }
 
-    fun GetUrlByPostrPath(poster_path: String, ctx: Context): String {
+    fun getUrlByPostrPath(poster_path: String, ctx: Context): String {
         return ctx.getString(R.string.film_url) + poster_path
     }
 

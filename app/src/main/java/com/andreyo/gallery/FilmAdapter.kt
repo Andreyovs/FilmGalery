@@ -158,7 +158,7 @@ class FilmAdapter(
 
             if (filmImg != null) {
                 Picasso.get()
-                    .load(FilmHelper.GetUrlByPostrPath(item.poster_path, layoutInflater.context))
+                    .load(FilmHelper.getUrlByPostrPath(item.poster_path, layoutInflater.context))
                     .into(
                         filmImg
                     )

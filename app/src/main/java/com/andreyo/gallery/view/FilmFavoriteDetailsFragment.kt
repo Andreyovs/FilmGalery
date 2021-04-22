@@ -45,7 +45,7 @@ class FilmFavoriteDetailsFragment : Fragment() {
         view.findViewById<Toolbar>(R.id.pageNameTextView).title = film.title
         if (view.findViewById<ImageView>(R.id.iv_film) != null) {
             Picasso.get()
-                .load(FilmHelper.GetUrlByPostrPath(film.poster_path,layoutInflater.context)).into(
+                .load(FilmHelper.getUrlByPostrPath(film.poster_path,layoutInflater.context)).into(
                     view.findViewById<ImageView>(R.id.iv_film)
                 )
         }

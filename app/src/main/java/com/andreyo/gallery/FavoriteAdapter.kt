@@ -89,7 +89,7 @@ class FavoriteAdapter(
             filmDescr.text = item.overview.trim()
             if (filmImg != null) {
                 Picasso.get()
-                    .load(FilmHelper.GetUrlByPostrPath(item.poster_path, layoutInflater.context))
+                    .load(FilmHelper.getUrlByPostrPath(item.poster_path, layoutInflater.context))
                     .into(
                         filmImg
                     )
