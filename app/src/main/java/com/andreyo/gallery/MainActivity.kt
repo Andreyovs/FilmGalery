@@ -46,9 +46,13 @@ class MainActivity : AppCompatActivity() {
                     FilmAppInviteFragment()
             }
         }
-        var sm = supportFragmentManager
+        val sm = supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer, fragment!!, tag)
+        if (!fragment!!.isAdded) {
+            sm.replace(R.id.fragmentContainer, fragment, tag)
+        } else {
+            sm.show(fragment)
+        }
         if (!isFirstPage) {
             sm.addToBackStack(tag)
         }

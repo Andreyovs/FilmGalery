@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.andreyo.gallery.Film
 import com.andreyo.gallery.R
+import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.helper.FilmHelper
 import com.squareup.picasso.Picasso
 
@@ -47,7 +47,7 @@ class FilmDetailsFragment : Fragment() {
             Picasso.get()
                 .load(FilmHelper.GetUrlByPostrPath(film.poster_path,layoutInflater.context)).into(
                     view.findViewById<ImageView>(R.id.iv_film)
-                );
+                )
         }
         view.findViewById<TextView>(R.id.tv_filmDescr).text = film.overview
 

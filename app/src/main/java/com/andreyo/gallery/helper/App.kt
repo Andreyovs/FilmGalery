@@ -2,8 +2,8 @@ package com.andreyo.gallery.helper
 
 import android.app.Application
 import android.util.Log
-import com.andreyo.gallery.Film
-import com.andreyo.gallery.FilmResults
+import com.andreyo.gallery.data.Film
+import com.andreyo.gallery.data.FilmResults
 import com.andreyo.gallery.data.Discover
 import com.andreyo.gallery.data.TmdbApi
 import com.google.gson.Gson

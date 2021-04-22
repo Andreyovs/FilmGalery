@@ -6,11 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
+import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.helper.FilmHelper
 import com.andreyo.gallery.view.FilmDetailsFragment
 import com.google.android.material.snackbar.Snackbar
@@ -48,8 +48,7 @@ class FilmAdapter(
         private val filmDescr = itemView.findViewById<TextView>(R.id.tv_filmDescr)
         private val filmImg = itemView.findViewById<ImageView>(R.id.iv_film)
         private val buttonLike = itemView.findViewById<ToggleButton>(R.id.tgb_Fav)
-        private val buttonDetails = itemView.findViewById<Button>(R.id.btn_details)
-        private val mainActivity = (layoutInflater.context as com.andreyo.gallery.MainActivity)
+        private val mainActivity = (layoutInflater.context as MainActivity)
 
 
         private fun showSnackbar(text: String, film: Film) {
@@ -106,7 +105,7 @@ class FilmAdapter(
             }
         }
 
-        fun SetListeners(item: Film) {
+        fun setListeners(item: Film) {
             val fm =
                 mainActivity.supportFragmentManager
             buttonLike?.setOnClickListener {
@@ -129,7 +128,7 @@ class FilmAdapter(
                 false
             }
 
-            buttonDetails?.setOnClickListener {
+            itemView.setOnClickListener {
                 Log.i("button write id", item.id.toString())
                 if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[adapterPosition])
                 colorItems()
@@ -140,11 +139,15 @@ class FilmAdapter(
                 Log.i("itemView write id", item.id.toString())
                 val fragment = FilmDetailsFragment()
                 fragment.arguments = args
-                fm
+                val sm = fm
                     .beginTransaction()
-                    .replace(R.id.fragmentContainer, fragment, FilmDetailsFragment.TAG)
-                    .addToBackStack(FilmDetailsFragment.TAG)
-                    .commit()
+                if (!fragment.isAdded) {
+                    sm.replace(R.id.fragmentContainer, fragment, FilmDetailsFragment.TAG)
+                } else {
+                    sm.show(fragment)
+                }
+                sm.addToBackStack(FilmDetailsFragment.TAG)
+                sm.commit()
             }
 
         }
@@ -158,7 +161,7 @@ class FilmAdapter(
                     .load(FilmHelper.GetUrlByPostrPath(item.poster_path, layoutInflater.context))
                     .into(
                         filmImg
-                    );
+                    )
             }
             if (FilmHelper.checked.contains(item.id)) {
                 colorItems()
@@ -167,8 +170,10 @@ class FilmAdapter(
             }
             if (FilmHelper.liked.contains(item.id)) {
                 buttonLike.setChecked(true)
+            } else {
+                buttonLike.isChecked = false
             }
-            SetListeners(item)
+            setListeners(item)
         }
 
     }

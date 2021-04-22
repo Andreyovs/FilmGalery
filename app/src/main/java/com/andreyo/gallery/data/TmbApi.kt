@@ -1,6 +1,5 @@
 package com.andreyo.gallery.data
 
-import com.andreyo.gallery.Film
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call

@@ -7,15 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.andreyo.gallery.Film
 import com.andreyo.gallery.FilmAdapter
 import com.andreyo.gallery.R
+import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.helper.FilmHelper
 
 class FilmListFragment : Fragment() {
-    companion object{
+    companion object {
         const val TAG = "FilmListFragment"
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,7 +26,7 @@ class FilmListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var rv: RecyclerView = view.findViewById(R.id.rv_Films)
+        val rv: RecyclerView = view.findViewById(R.id.rv_Films)
         //FilmHelper.getFilms()
         rv.adapter = FilmAdapter(FilmHelper.getFilms(), object : FilmAdapter.Callback {
             override fun onItemClicked(item: Film) {
