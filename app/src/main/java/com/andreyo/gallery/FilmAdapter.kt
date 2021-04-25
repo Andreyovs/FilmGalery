@@ -68,7 +68,7 @@ class FilmAdapter(
             snackbar.show()
         }
 
-        fun onFilmFavorite(film: Film) {
+        private fun onFilmFavorite(film: Film) {
 
 
             when (if (buttonLike.isSelected) "delete" else "add") {
@@ -82,17 +82,17 @@ class FilmAdapter(
             updateSelected(buttonLike.isSelected, film)
         }
 
-        fun colorItems() {
+        private fun colorItems() {
             filmName.setTextColor(Color.parseColor("#FF0000"))
             filmDescr.setTextColor(Color.parseColor("#FF0000"))
         }
 
-        fun colorDefaultItems() {
+        private fun colorDefaultItems() {
             filmName.setTextColor(Color.parseColor("black"))
             filmDescr.setTextColor(Color.parseColor("black"))
         }
 
-        fun updateSelected(selected: Boolean, item: Film) {
+        private fun updateSelected(selected: Boolean, item: Film) {
             if (!selected) {
                 FilmHelper.liked.add(item.id)
                 FilmHelper.liked = FilmHelper.liked.distinct().toMutableList()
@@ -105,7 +105,7 @@ class FilmAdapter(
             }
         }
 
-        fun setListeners(item: Film) {
+        private fun setListeners(item: Film) {
             val fm =
                 mainActivity.supportFragmentManager
             buttonLike?.setOnClickListener {
@@ -130,7 +130,7 @@ class FilmAdapter(
 
             itemView.setOnClickListener {
                 Log.i("button write id", item.id.toString())
-                if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[adapterPosition])
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[bindingAdapterPosition])
                 colorItems()
                 FilmHelper.checked.add(item.id)
                 FilmHelper.checked = FilmHelper.checked.distinct().toMutableList()

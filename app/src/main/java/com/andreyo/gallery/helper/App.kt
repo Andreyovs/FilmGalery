@@ -2,11 +2,9 @@ package com.andreyo.gallery.helper
 
 import android.app.Application
 import android.util.Log
-import com.andreyo.gallery.data.Film
-import com.andreyo.gallery.data.FilmResults
 import com.andreyo.gallery.data.Discover
+import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.data.TmdbApi
-import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -36,8 +34,7 @@ class App:Application() {
         getTopMovies()
     }
 
-    fun getTopMovies() {
-       // tmdbApi.toString()
+    private fun getTopMovies() {
       api.getCurrentTopFilms(
             API_KEY,
             sortBy,
@@ -69,7 +66,7 @@ class App:Application() {
     }
 
     private fun populateFilms(discover: Discover) {
-        films = Gson().fromJson(discover.results?.toString(), FilmResults::class.java).results.toMutableList()
+        films = discover.results as MutableList<Film>
 
     }
 }

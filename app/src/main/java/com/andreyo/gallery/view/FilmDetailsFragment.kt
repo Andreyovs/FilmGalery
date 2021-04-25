@@ -16,7 +16,7 @@ import com.andreyo.gallery.helper.FilmHelper
 import com.squareup.picasso.Picasso
 
 class FilmDetailsFragment : Fragment() {
-    var filmId: Int = 0
+    private var filmId: Int = 0
 
     companion object {
         const val TAG = "FilmDetailsFragment"

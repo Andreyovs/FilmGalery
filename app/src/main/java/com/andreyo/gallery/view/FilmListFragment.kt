@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andreyo.gallery.FilmAdapter
 import com.andreyo.gallery.R
 import com.andreyo.gallery.data.Film
-import com.andreyo.gallery.helper.FilmHelper
+import com.andreyo.gallery.helper.App
 
 class FilmListFragment : Fragment() {
     companion object {
@@ -28,7 +28,7 @@ class FilmListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val rv: RecyclerView = view.findViewById(R.id.rv_Films)
         //FilmHelper.getFilms()
-        rv.adapter = FilmAdapter(FilmHelper.getFilms(), object : FilmAdapter.Callback {
+        rv.adapter = FilmAdapter(App.instance.films, object : FilmAdapter.Callback {
             override fun onItemClicked(item: Film) {
 
             }
@@ -47,8 +47,4 @@ class FilmListFragment : Fragment() {
         retainInstance = true
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-    }
 }
