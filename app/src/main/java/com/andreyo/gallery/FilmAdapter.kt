@@ -130,7 +130,7 @@ class FilmAdapter(
 
             itemView.setOnClickListener {
                 Log.i("itemView write id", item.id.toString())
-                if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[adapterPosition])
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[bindingAdapterPosition])
                 colorItems()
                 FilmHelper.checked.add(item.id)
                 FilmHelper.checked = FilmHelper.checked.distinct().toMutableList()
@@ -157,7 +157,7 @@ class FilmAdapter(
             if (filmImg != null) {
                 Picasso.get()
                     .load(
-                        FilmHelper.GetUrlByPostrPath(
+                        FilmHelper.getUrlByPostrPath(
                             item.poster_path,
                             layoutInflater.context
                         )

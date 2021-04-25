@@ -25,7 +25,7 @@ class FilmListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var rv: RecyclerView = view.findViewById(R.id.rv_Films)
+        val rv: RecyclerView = view.findViewById(R.id.rv_Films)
         rv.adapter = FilmAdapter(FilmHelper.getFilms(), object : FilmAdapter.Callback {
             override fun onItemClicked(item: Film) {
 
@@ -45,8 +45,4 @@ class FilmListFragment : Fragment() {
         retainInstance = true
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-    }
 }

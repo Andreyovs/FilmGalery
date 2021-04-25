@@ -8,13 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.R
+import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.helper.FilmHelper
 import com.squareup.picasso.Picasso
 
 class FilmDetailsFragment : Fragment() {
-    var filmId: Int = 0
+    private var filmId: Int = 0
 
     companion object {
         const val TAG = "FilmDetailsFragment"
@@ -28,16 +28,6 @@ class FilmDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_film_details, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         filmId = arguments?.getInt(FilmHelper.ID, 0)!!
@@ -45,9 +35,9 @@ class FilmDetailsFragment : Fragment() {
         view.findViewById<Toolbar>(R.id.pageNameTextView).title = film.title
         if (view.findViewById<ImageView>(R.id.iv_film) != null) {
             Picasso.get()
-                .load(FilmHelper.GetUrlByPostrPath(film.poster_path,layoutInflater.context)).into(
+                .load(FilmHelper.getUrlByPostrPath(film.poster_path,layoutInflater.context)).into(
                     view.findViewById<ImageView>(R.id.iv_film)
-                );
+                )
         }
         view.findViewById<TextView>(R.id.tv_filmDescr).text = film.overview
 

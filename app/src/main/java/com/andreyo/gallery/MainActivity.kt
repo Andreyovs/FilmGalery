@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         openFragment(FilmListFragment.TAG, true)
         findViewById<BottomNavigationView>(R.id.navigation).setOnNavigationItemSelectedListener {
+            supportFragmentManager.popBackStack()
             when (it.itemId) {
                 R.id.navigation_favorites -> {
                     openFragment(FilmListFavoritesFragment.TAG, false)
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
+        if (supportFragmentManager.backStackEntryCount > 1) {
             super.onBackPressed()
         } else {
             AlertDialog.Builder(this)
@@ -77,13 +78,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 .show()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //toDO
-
-
     }
 
 
