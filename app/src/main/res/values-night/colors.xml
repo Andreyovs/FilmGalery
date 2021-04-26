@@ -10,6 +10,5 @@
     <color name="colorPrimary_">#3F51B5</color>
     <color name="colorPrimaryDark_">#303F9F</color>
     <color name="colorAccent_">#FF5252</color>
-    <color name="colorPrimaryText_">#212121</color>
-
+    <color name="colorPrimaryText_">#FF5252</color>
 </resources>

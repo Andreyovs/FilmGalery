@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+app/libs/
+app/sampledata/
+app/src/main/res/data/
+app/src/main/res/xml/
