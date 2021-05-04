@@ -23,13 +23,7 @@ class filmListViewModel: BaseViewModel() {
        }
     }
     fun moreFilms() {
-        //FilmHelper.page++
-        //val message = FilmHelper.instance.getTopFilms(FilmHelper.page)
 
-        /*if (App.instance.error) {
-            App.page--
-            errorLiveData.postValue(message)
-        } else moviesLiveData.value = App.instance.items*/
     }
 
 
