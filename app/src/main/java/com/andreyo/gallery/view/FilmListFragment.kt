@@ -33,7 +33,7 @@ class FilmListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val rv: RecyclerView = view.findViewById(R.id.rv_Films)
-        var fm= FilmHelper()
+        val fm= FilmHelper()
         fm.initFilms()
         am = ViewModelProvider(this).get(filmListViewModel::class.java)//ViewModelProvider.NewInstanceFactory().create(filmListViewModel::class.java) //..of(this).get(ActivityViewModel::class.java)
         observeGetFilms()

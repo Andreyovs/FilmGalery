@@ -23,9 +23,9 @@ class FilmHelper : Application() {
     companion object {
         lateinit var instance: FilmHelper
             private set
-        val BASE_URL = "https://api.themoviedb.org/3/"
-        val API_KEY = "b1df320d88a0de6cc7bf96839ff29b9a"
-        val sortBy = "popularity.desc"
+        const val BASE_URL = "https://api.themoviedb.org/3/"
+        const val API_KEY = "b1df320d88a0de6cc7bf96839ff29b9a"
+        const val sortBy = "popularity.desc"
         var page = 1
     }
     override fun onCreate() {
@@ -116,7 +116,7 @@ class FilmHelper : Application() {
 
     fun getFilm(id: Int?): Film {
         Log.i("read id", id.toString())
-        return films.first { it.id.equals(id) }
+        return films.first { it.id == id }
 
     }
 
