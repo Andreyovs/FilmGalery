@@ -56,7 +56,6 @@ abstract class BaseViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                // UPD (подсказали в комментариях) В блоке catch ивент передаем тоже в Main потоке
                 launch(Dispatchers.Main) {
                     response(Event.error(null))
                 }
