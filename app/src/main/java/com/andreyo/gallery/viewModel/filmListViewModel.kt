@@ -22,6 +22,15 @@ class filmListViewModel: BaseViewModel() {
            callback(it)
        }
     }
+
+    fun getFilms1(page: Int) {
+        requestWithLiveData(filmListData) {
+            api.getCurrentTopFilms1(
+                page = page,
+                apiKey = API_KEY,
+                sortBy = sortBy)
+        }
+    }
     fun moreFilms() {
 
     }

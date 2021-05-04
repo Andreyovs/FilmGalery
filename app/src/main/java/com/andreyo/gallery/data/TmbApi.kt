@@ -16,6 +16,15 @@ interface TmdbApi {
 
 
     ): ResponseWrapper<Discover>
+
+    @GET("discover/movie")
+    fun getCurrentTopFilms1(
+        @Query("api_key") apiKey: String,
+        @Query("sort_by") sortBy: String,
+        @Query("page") page: Int
+
+
+    ): ResponseWrapper<Discover>
 }
 
 data class Discover(
