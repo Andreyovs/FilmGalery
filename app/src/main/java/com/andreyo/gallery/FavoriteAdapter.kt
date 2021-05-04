@@ -58,16 +58,16 @@ class FavoriteAdapter(
                     item.id.toString()
                 )
 
-                FilmHelper.liked.remove(item.id)
+                FilmHelper.instance.liked.remove(item)
                 filmList.remove(item)
                 callback.onDeleteClick(bindingAdapterPosition)
             }
             itemView.setOnClickListener {
                 if (bindingAdapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[bindingAdapterPosition])
-                FilmHelper.checked.add(item.id)
-                FilmHelper.checked = FilmHelper.checked.distinct().toMutableList()
+                FilmHelper.instance.checked.add(item)
+                FilmHelper.instance.checked = FilmHelper.instance.checked.distinct().toMutableList()
                 val args = Bundle()
-                args.putInt(FilmHelper.ID, item.id)
+                args.putInt(FilmHelper.instance.ID, item.id)
                 Log.i("itemView write id", item.id.toString())
                 val fragment = FilmDetailsFragment()
                 fragment.arguments = args
@@ -89,7 +89,7 @@ class FavoriteAdapter(
             filmDescr.text = item.overview.trim()
             if (filmImg != null) {
                 Picasso.get()
-                    .load(FilmHelper.getUrlByPostrPath(item.poster_path, layoutInflater.context))
+                    .load(FilmHelper.instance.getUrlByPostrPath(item.poster_path, layoutInflater.context))
                     .into(
                         filmImg
                     )

@@ -61,7 +61,7 @@ class FilmAdapter(
                 )
             snackbar.setAction(R.string.undo) {
                 updateSelected(
-                    FilmHelper.isFavorite(film.id),
+                    FilmHelper.instance.isFavorite(film.id),
                     film
                 )
             }
@@ -94,12 +94,12 @@ class FilmAdapter(
 
         private fun updateSelected(selected: Boolean, item: Film) {
             if (!selected) {
-                FilmHelper.liked.add(item.id)
-                FilmHelper.liked = FilmHelper.liked.distinct().toMutableList()
+                FilmHelper.instance.liked.add(item)
+                FilmHelper.instance.liked = FilmHelper.instance.liked.distinct().toMutableList()
                 buttonLike.setChecked(true)
             } else {
-                FilmHelper.liked.remove(item.id)
-                FilmHelper.liked = FilmHelper.liked.distinct().toMutableList()
+                FilmHelper.instance.liked.remove(item)
+                FilmHelper.instance.liked = FilmHelper.instance.liked.distinct().toMutableList()
                 buttonLike.setChecked(false)
 
             }
@@ -132,10 +132,10 @@ class FilmAdapter(
                 Log.i("button write id", item.id.toString())
                 if (bindingAdapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(filmList[bindingAdapterPosition])
                 colorItems()
-                FilmHelper.checked.add(item.id)
-                FilmHelper.checked = FilmHelper.checked.distinct().toMutableList()
+                FilmHelper.instance.checked.add(item)
+                FilmHelper.instance.checked = FilmHelper.instance.checked.distinct().toMutableList()
                 val args = Bundle()
-                args.putInt(FilmHelper.ID, item.id)
+                args.putInt(FilmHelper.instance.ID, item.id)
                 Log.i("itemView write id", item.id.toString())
                 val fragment = FilmDetailsFragment()
                 fragment.arguments = args
@@ -158,17 +158,17 @@ class FilmAdapter(
 
             if (filmImg != null) {
                 Picasso.get()
-                    .load(FilmHelper.getUrlByPostrPath(item.poster_path, layoutInflater.context))
+                    .load(FilmHelper.instance.getUrlByPostrPath(item.poster_path, layoutInflater.context))
                     .into(
                         filmImg
                     )
             }
-            if (FilmHelper.checked.contains(item.id)) {
+            if (FilmHelper.instance.checked.contains(item)) {
                 colorItems()
             } else {
                 colorDefaultItems()
             }
-            if (FilmHelper.liked.contains(item.id)) {
+            if (FilmHelper.instance.liked.contains(item)) {
                 buttonLike.setChecked(true)
             } else {
                 buttonLike.isChecked = false

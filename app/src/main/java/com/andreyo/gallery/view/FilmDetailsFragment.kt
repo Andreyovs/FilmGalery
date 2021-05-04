@@ -37,12 +37,12 @@ class FilmDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        filmId = arguments?.getInt(FilmHelper.ID, 0)!!
-        val film: Film = FilmHelper.getFilm(filmId)
+        filmId = arguments?.getInt(FilmHelper.instance.ID, 0)!!
+        val film: Film = FilmHelper.instance.getFilm(filmId)
         view.findViewById<Toolbar>(R.id.pageNameTextView).title = film.title
         if (view.findViewById<ImageView>(R.id.iv_film) != null) {
             Picasso.get()
-                .load(FilmHelper.getUrlByPostrPath(film.poster_path,layoutInflater.context)).into(
+                .load(FilmHelper.instance.getUrlByPostrPath(film.poster_path,layoutInflater.context)).into(
                     view.findViewById<ImageView>(R.id.iv_film)
                 )
         }

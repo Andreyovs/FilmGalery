@@ -2,20 +2,20 @@ package com.andreyo.gallery.data
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 
+
 interface TmdbApi {
     @GET("discover/movie")
-    fun getCurrentTopFilms(
+    suspend fun getCurrentTopFilms(
         @Query("api_key") apiKey: String,
         @Query("sort_by") sortBy: String,
         @Query("page") page: Int
 
 
-    ): Call<Discover>
+    ): ResponseWrapper<Discover>
 }
 
 data class Discover(

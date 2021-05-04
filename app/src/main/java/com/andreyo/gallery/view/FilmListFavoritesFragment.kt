@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andreyo.gallery.FavoriteAdapter
 import com.andreyo.gallery.R
 import com.andreyo.gallery.data.Film
-import com.andreyo.gallery.helper.App
 import com.andreyo.gallery.helper.FilmHelper
 
 class FilmListFavoritesFragment : Fragment() {
@@ -30,19 +29,19 @@ class FilmListFavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val rv: RecyclerView = view.findViewById(R.id.rv_Favorite)
         rv.adapter =
-            FavoriteAdapter(App.instance.films, object : FavoriteAdapter.Callback {
+            FavoriteAdapter(FilmHelper.instance.getFavoriteFilms(), object : FavoriteAdapter.Callback {
                 override fun onItemClicked(item: Film) {
 
                 }
 
                 override fun onDeleteClick(position: Int) {
                     rv.adapter?.notifyItemRemoved(position)
-                    rv.adapter?.notifyItemRangeChanged(position, FilmHelper.liked.size)
+                    rv.adapter?.notifyItemRangeChanged(position, FilmHelper.instance.liked.size)
                     Log.i("adapter size : ", rv.adapter?.itemCount.toString())
-                    Log.i("favorite size : ", FilmHelper.liked.size.toString())
+                    Log.i("favorite size : ", FilmHelper.instance.liked.size.toString())
                     Log.i(
                         "favorite procedure size : ",
-                        FilmHelper.getFavoriteFilms().size.toString()
+                        FilmHelper.instance.getFavoriteFilms().size.toString()
                     )
 
 

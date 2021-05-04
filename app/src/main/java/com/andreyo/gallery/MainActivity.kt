@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportFragmentManager.popBackStack()
         setContentView(R.layout.activity_main)
         openFragment(FilmListFragment.TAG, true)
         findViewById<BottomNavigationView>(R.id.navigation).setOnNavigationItemSelectedListener {
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
+        if (supportFragmentManager.backStackEntryCount > 1) {
             super.onBackPressed()
         } else {
             AlertDialog.Builder(this)
