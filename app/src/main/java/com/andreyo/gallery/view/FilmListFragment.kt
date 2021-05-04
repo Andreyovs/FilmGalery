@@ -63,6 +63,7 @@ class FilmListFragment : Fragment() {
     }
 
     private fun observeGetFilms() {
+        am.getFilms1(1)
         am.getFilms(1) {
             when (it.status) {
                 Status.LOADING -> viewTwoLoading()
