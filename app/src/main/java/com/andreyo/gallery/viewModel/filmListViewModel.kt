@@ -12,20 +12,20 @@ class filmListViewModel: BaseViewModel() {
     val API_KEY = "b1df320d88a0de6cc7bf96839ff29b9a"
     val sortBy = "popularity.desc"
 
-    fun getFilms(page: Int,callback: (data: Event<Discover>) -> Unit) {
-       requestWithCallback({
+        /*  fun getFilms(page: Int,callback: (data: Event<Discover>) -> Unit) {
+       /*requestWithCallback({
             api.getCurrentTopFilms(
                 page = page,
                 apiKey = API_KEY,
                 sortBy = sortBy)
         }){
            callback(it)
-       }
-    }
+       }*/
+    }*/
 
-    fun getFilms1(page: Int) {
+    suspend fun getFilms(page: Int) {
         requestWithLiveData(filmListData) {
-            api.getCurrentTopFilms1(
+            api.getCurrentTopFilms(
                 page = page,
                 apiKey = API_KEY,
                 sortBy = sortBy)

@@ -14,8 +14,9 @@ import com.andreyo.gallery.R
 import com.andreyo.gallery.data.Discover
 import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.helper.FilmHelper
-import com.andreyo.gallery.viewModel.Status
 import com.andreyo.gallery.viewModel.filmListViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class FilmListFragment : Fragment() {
@@ -35,8 +36,10 @@ class FilmListFragment : Fragment() {
         val rv: RecyclerView = view.findViewById(R.id.rv_Films)
         val fm= FilmHelper()
         fm.initFilms()
-        am = ViewModelProvider(this).get(filmListViewModel::class.java)//ViewModelProvider.NewInstanceFactory().create(filmListViewModel::class.java) //..of(this).get(ActivityViewModel::class.java)
-        observeGetFilms()
+        am = ViewModelProvider(this).get(filmListViewModel::class.java)
+        GlobalScope.launch {
+            observeGetFilms()
+        }
         rv.adapter = FilmAdapter(FilmHelper.instance.getFilms(), object : FilmAdapter.Callback {
             override fun onItemClicked(item: Film) {
 
@@ -62,16 +65,10 @@ class FilmListFragment : Fragment() {
 
     }
 
-    private fun observeGetFilms() {
-        am.getFilms1(1)
-        am.getFilms(1) {
-            when (it.status) {
-                Status.LOADING -> viewTwoLoading()
-                Status.SUCCESS -> viewTwoSuccess(it.data)
-                Status.ERROR -> viewTwoError(it.error)
-            }
+    public suspend fun observeGetFilms() {
+        am.getFilms(1)
         }
-    }
+
     private fun viewTwoLoading() {
 
     }
@@ -80,7 +77,7 @@ class FilmListFragment : Fragment() {
     Log.i("Found", data!!.results!!.toMutableList().toString())
     }
 
-    private fun viewTwoError(error: Error?) {
+    private fun viewTwoError(error: String) {
 
         }
 

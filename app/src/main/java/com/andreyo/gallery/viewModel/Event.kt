@@ -1,18 +1,18 @@
 package com.andreyo.gallery.viewModel
 
 
-data class Event<out T>(val status: Status, val data: T?, val error: Error?) {
+data class Event<out T>(val status: Status, val data: T?, val error: String) {
 
     companion object {
         fun <T> loading(): Event<T> {
-            return Event(Status.LOADING, null, null)
+            return Event(Status.LOADING, null, "")
         }
 
         fun <T> success(data: T?): Event<T> {
-            return Event(Status.SUCCESS, data, null)
+            return Event(Status.SUCCESS, data, "")
         }
 
-        fun <T> error(error: Error?): Event<T> {
+        fun <T> error(error: String): Event<T> {
             return Event(Status.ERROR, null, error)
         }
     }
