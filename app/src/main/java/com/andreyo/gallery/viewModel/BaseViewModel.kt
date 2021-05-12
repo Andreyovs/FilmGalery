@@ -16,7 +16,7 @@ abstract class BaseViewModel : ViewModel() {
     var api: TmdbApi = NetworkService.retrofitService()
 
 
-   suspend fun <T> requestWithLiveData(
+    fun <T> requestWithLiveData(
         liveData: MutableLiveData<Event<T>>,
         request: suspend() -> Response<T>
     ) {

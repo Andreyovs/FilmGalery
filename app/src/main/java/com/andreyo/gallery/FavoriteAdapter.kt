@@ -67,7 +67,7 @@ class FavoriteAdapter(
                 FilmHelper.instance.checked.add(item)
                 FilmHelper.instance.checked = FilmHelper.instance.checked.distinct().toMutableList()
                 val args = Bundle()
-                args.putInt(FilmHelper.instance.ID, item.id)
+                args.putInt(FilmHelper.ID, item.id)
                 Log.i("itemView write id", item.id.toString())
                 val fragment = FilmDetailsFragment()
                 fragment.arguments = args

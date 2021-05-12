@@ -17,7 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
 class FilmAdapter(
-    val filmList: List<Film>,
+    var filmList: List<Film>,
     val callback: Callback,
     val layoutInflater: LayoutInflater
 ) :
@@ -33,10 +33,14 @@ class FilmAdapter(
         )
     }
 
+
     override fun getItemCount(): Int {
         return filmList.size
     }
 
+    fun setItems(films: List<Film>) {
+        filmList = films.toMutableList()
+    }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(filmList[position])
 
@@ -135,7 +139,7 @@ class FilmAdapter(
                 FilmHelper.instance.checked.add(item)
                 FilmHelper.instance.checked = FilmHelper.instance.checked.distinct().toMutableList()
                 val args = Bundle()
-                args.putInt(FilmHelper.instance.ID, item.id)
+                args.putInt(FilmHelper.ID, item.id)
                 Log.i("itemView write id", item.id.toString())
                 val fragment = FilmDetailsFragment()
                 fragment.arguments = args
@@ -163,6 +167,7 @@ class FilmAdapter(
                         filmImg
                     )
             }
+
             if (FilmHelper.instance.checked.contains(item)) {
                 colorItems()
             } else {

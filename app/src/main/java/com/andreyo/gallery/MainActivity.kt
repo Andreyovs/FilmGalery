@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         var fragment = supportFragmentManager.findFragmentByTag(tag)
         if (fragment == null) {
             when (tag) {
+
                 FilmListFragment.TAG -> fragment =
                     FilmListFragment()
                 FilmListFavoritesFragment.TAG -> fragment =
