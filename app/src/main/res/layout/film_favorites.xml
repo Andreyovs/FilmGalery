@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    tools:context=".FilmFavorites"
+    >
+
+    <ImageView
+        android:id="@+id/film_ImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:padding="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@tools:sample/avatars"
+        tools:contentDescription="@string/filmImg_descr"
+        android:contentDescription="@string/filmImg_descr" />
+
+    <TextView
+        android:id="@+id/filmName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:padding="4dp"
+        tools:text="@string/filmName_text"
+        app:layout_constraintStart_toEndOf="@+id/film_ImageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/filmDescr"
+        android:layout_width="277dp"
+        android:layout_height="92dp"
+        android:clipToPadding="false"
+        android:padding="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/film_ImageView"
+        app:layout_constraintTop_toBottomOf="@+id/filmName"
+        tools:text="@string/filmDescr_text" />
+
+    <ToggleButton
+        android:id="@+id/tgbFav"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/fav_checked"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/film_ImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
