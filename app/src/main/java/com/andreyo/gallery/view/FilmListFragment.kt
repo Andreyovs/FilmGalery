@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -80,7 +79,7 @@ class FilmListFragment : Fragment() {
     }
 
     private fun observeGetFilms() {
-        viewModel.filmListData.observe(viewLifecycleOwner, Observer {
+        viewModel.filmListData.observe(viewLifecycleOwner, {
             when (it.status) {
                 Status.LOADING -> filmListDataLoading()
                 Status.SUCCESS -> prepareData(it.data)
@@ -93,7 +92,7 @@ class FilmListFragment : Fragment() {
     private fun prepareData(data: Discover?) {
         if (!data!!.results!!.isNullOrEmpty()) {
             var films: List<Film> = mutableListOf()
-            films = FilmHelper.instance.getFilms() + data!!.results!!.toMutableList()
+            films = FilmHelper.instance.getFilms() + data.results!!.toMutableList()
             //
             FilmHelper.instance.setFilms(films.distinct())
             adapter.setItems(films.distinct())

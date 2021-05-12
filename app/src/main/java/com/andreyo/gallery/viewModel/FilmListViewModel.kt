@@ -9,12 +9,12 @@ class FilmListViewModel: BaseViewModel() {
     var filmListData = MutableLiveData<Event<Discover>>()
     private var favoriteFilmLiveData = MutableLiveData<List<Film>>()
     private var selectedFilmListData = MutableLiveData<List<Film>>()
-    val API_KEY = "b1df320d88a0de6cc7bf96839ff29b9a"
-    val sortBy = "popularity.desc"
+    private val API_KEY = "b1df320d88a0de6cc7bf96839ff29b9a"
+    private val sortBy = "popularity.desc"
 
 
     init {
-        var films: MutableList<Film> = mutableListOf()
+        val films: MutableList<Film> = mutableListOf()
         filmsLiveData.postValue(films)
         favoriteFilmLiveData.postValue(films)
         selectedFilmListData.postValue(films)

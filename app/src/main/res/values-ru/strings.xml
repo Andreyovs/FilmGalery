@@ -5,14 +5,12 @@
     <string name="filmName_text">Наименование фильма</string>
     <string name="filmImg_descr">Описание фильма</string>
     <string name="button_appointment">Пригласить друзей</string>
-    <string name="button_details">...</string>
     <string name="exit_dialog">Диалог</string>
     <string name="exit_text">Вы хотите выйти из приложения?</string>
     <string name="favorite">Избранное</string>
     <string name="undo">отмена</string>
     <string name="addFavorite">Добавить в избранное</string>
     <string name="delFavorite">Удалить из избранного</string>
-    <string name="emailTitle">Title</string>
     <string name="emailAddrHint">email adres</string>
     <string name="emailSubject">Subject</string>
     <string name="emailBody">Body</string>

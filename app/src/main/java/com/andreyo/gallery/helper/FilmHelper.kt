@@ -8,7 +8,7 @@ import com.andreyo.gallery.data.Film
 
 class FilmHelper {
     companion object {
-        val ID = "id"
+        const val ID = "id"
         var isFirstRun: Boolean = true
         lateinit var instance: FilmHelper
             private set
@@ -32,7 +32,7 @@ class FilmHelper {
 
     }
 
-    public fun getUrlByPostrPath(poster_path: String, ctx: Context): String {
+    fun getUrlByPostrPath(poster_path: String, ctx: Context): String {
         return ctx.getString(R.string.film_url) + poster_path
     }
 
