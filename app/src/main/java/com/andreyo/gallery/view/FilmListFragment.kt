@@ -41,7 +41,7 @@ class FilmListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(FilmListViewModel::class.java)
         observeGetFilms()
         if (FilmHelper.isFirstRun) {
-            FilmHelper().init()
+            FilmHelper.instance.getFilms()
             viewModel.getFilms(FilmHelper.instance.page)
         }
         var films: MutableList<Film> = mutableListOf()

@@ -15,6 +15,8 @@
     <string name="emailSubject">Subject</string>
     <string name="emailBody">Body</string>
     <string name="btn_emilName">Send</string>
+    <string name="channel_name">FilmsChanel</string>
+    <string name="channel_desc">Information Chanel</string>
 
 
 </resources>
