@@ -1,5 +1,5 @@
 package com.andreyo.gallery.firebase
-
+/*
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -12,8 +12,8 @@ import androidx.core.app.NotificationCompat
 import com.andreyo.gallery.MainActivity
 import com.andreyo.gallery.R
 import com.andreyo.gallery.helper.FilmHelper
-import com.google.firebase.messaging.FirebaseMessagingService
-import com.google.firebase.messaging.RemoteMessage
+//import com.google.firebase.messaging.FirebaseMessagingService
+//import com.google.firebase.messaging.RemoteMessage
 
 class MessagingService : FirebaseMessagingService() {
 
@@ -94,4 +94,4 @@ class MessagingService : FirebaseMessagingService() {
     private fun sendRegistrationToServer(token: String) {
         Log.d(TAG, token)
     }
-}
+} */

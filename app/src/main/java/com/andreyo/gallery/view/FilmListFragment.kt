@@ -40,10 +40,9 @@ class FilmListFragment : Fragment() {
         rv = view.findViewById(R.id.rv_Films)
         viewModel = ViewModelProvider(this).get(FilmListViewModel::class.java)
         observeGetFilms()
-            /*  if (FilmHelper.isFirstRun) {
-            FilmHelper.instance.getFilms()
+        if (FilmHelper.isFirstRun) {
             viewModel.getFilms(FilmHelper.instance.page)
-        }*/
+        }
         var films: MutableList<Film> = mutableListOf()
         if (FilmHelper.instance.getFilms().isNotEmpty()) {
             films = FilmHelper.instance.getFilms().toMutableList()

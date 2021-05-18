@@ -1,14 +1,15 @@
 package com.andreyo.gallery.helper
 
-import android.app.Application
+/*import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.FirebaseApp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.installations.FirebaseInstallations
+*/import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.andreyo.gallery.R
 import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.db.FilmsDb
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.installations.FirebaseInstallations
-import java.util.*
 
 
 class FilmHelper: Application() {
@@ -27,13 +28,16 @@ class FilmHelper: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        isFirstRun = false
         instance = this
         instance.checked = mutableListOf()
         instance.liked = mutableListOf()
         instance.films = mutableListOf()
         db = FilmsDb.getInstance(this.applicationContext)
-            /*getFirebaseToken()
+    /*    FirebaseApp.initializeApp(this.applicationContext)
+
+        val mFirebaseAnalytics = FirebaseAnalytics.getInstance(this.applicationContext)
+        mFirebaseAnalytics.setUserId("AOTAG")*/
+     /*FirebaseApp.getFirebaseToken()
 
         setUserID().let {
             FirebaseCrashlytics.getInstance().setUserId(it)
@@ -45,10 +49,10 @@ class FilmHelper: Application() {
 
 
     }*/
-    private fun getFirebaseToken() {
+  /*  private fun getFirebaseToken() {
         FirebaseInstallations.getInstance().id.addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
-                    Log.w("AZTAG", "getInstanceId failed", task.exception)
+                    Log.w("AOTAG", "getInstanceId failed", task.exception)
                     return@OnCompleteListener
                 }
 
@@ -57,7 +61,7 @@ class FilmHelper: Application() {
 
                 // Log and toast
                 val msg = token ?: ""
-                Log.d("AZTAG", msg)
+                Log.d("AOTAG", msg)
             })
     }
     private fun createUserId(): String = UUID.randomUUID().toString()
@@ -72,7 +76,7 @@ class FilmHelper: Application() {
             editor.apply()
         }
         return userId
-    }
+    }*/
     fun isFavorite(filmId: Int): Boolean {
         return this.liked.contains(filmId)
 
@@ -85,6 +89,7 @@ class FilmHelper: Application() {
 
     fun setFilms(filmList: List<Film>) {
         instance.films = filmList.toMutableList()
+        isFirstRun = false
     }
 
     fun getFilms(): List<Film> {
