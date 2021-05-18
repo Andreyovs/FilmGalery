@@ -7,7 +7,6 @@ import com.andreyo.gallery.R
 import com.andreyo.gallery.data.Film
 import com.andreyo.gallery.db.FilmsDb
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.installations.FirebaseInstallations
 import java.util.*
 
@@ -34,11 +33,11 @@ class FilmHelper: Application() {
         instance.liked = mutableListOf()
         instance.films = mutableListOf()
         db = FilmsDb.getInstance(this.applicationContext)
-        getFirebaseToken()
+            /*getFirebaseToken()
 
         setUserID().let {
             FirebaseCrashlytics.getInstance().setUserId(it)
-        }
+        }*/
     }
 
 
